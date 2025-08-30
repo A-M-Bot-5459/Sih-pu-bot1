@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SIH25012 — First-Prize Playbook</title>
+  <style>
+    :root{
+      --bg1:#0b0220; --bg2:#2e026d;
+      --accent1:#ff00cc; --accent2:#3333ff; --accent3:#00ffcc;
+      --panel: rgba(255,255,255,0.06);
+    }
+    html,body{height:100%; margin:0; font-family:Inter, Poppins, system-ui, sans-serif; background: radial-gradient(circle at 10% 10%, var(--bg2), #07020a 60%); color:#fff;}
+    header{padding:28px 16px; text-align:center; border-bottom:1px solid rgba(255,255,255,0.06); backdrop-filter: blur(6px);}
+    header h1{margin:0; font-size:1.9rem; background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+    header p{margin:6px 0 0; color:rgba(255,255,255,0.7);}
+
+    .wrap{max-width:980px;margin:28px auto;padding:0 16px; display:grid; grid-template-columns: 1fr; gap:16px;}
+
+    .card{background:var(--panel); border-radius:14px; padding:18px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform .15s;}
+    .card:hover{transform: translateY(-6px);}
+
+    .card h2{margin:0 0 12px; color:#ffd88f;}
+
+    details.day{background:transparent; border-radius:10px; padding:10px; margin-bottom:8px;}
+    details summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; padding:8px 12px; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);}
+    details[open] summary{box-shadow:0 6px 20px rgba(0,0,0,0.5);}
+
+    .day-title{display:flex; gap:12px; align-items:center;}
+    .day-badge{font-size:0.8rem; padding:6px 8px; background:rgba(255,255,255,0.04); border-radius:999px; color:#fff;}
+
+    .steps{padding:12px 6px 6px 6px;}
+
+    .step{border-radius:10px; padding:8px; margin-bottom:10px; background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);}
+    .step-header{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+    .step-left{display:flex; align-items:center; gap:10px;}
+    .step-left input{width:18px;height:18px; accent-color: var(--accent3);}
+
+    .open-step-btn{background:linear-gradient(90deg,var(--accent3),var(--accent1)); border:none; color:#000; padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:600;}
+    .open-step-btn:hover{transform:scale(1.03);}
+
+    .substeps{margin-top:10px; padding-left:34px; display:flex; flex-direction:column; gap:8px;}
+    .substep-btn{background:transparent; border:1px dashed rgba(255,255,255,0.08); color:#dcdcdc; text-align:left; padding:8px 10px; border-radius:8px; cursor:pointer;}
+    .substep-btn:hover{background:rgba(255,255,255,0.02);}
+
+    .substep-expl{margin-left:6px; margin-top:6px; padding:10px; background:rgba(0,0,0,0.45); border-radius:8px; color:#ddd; font-size:0.95rem; display:none;}
+
+    /* Progress */
+    .progress-wrap{display:flex; flex-direction:column; gap:8px;}
+    .progress-bar{height:14px; background:rgba(255,255,255,0.06); border-radius:999px; overflow:hidden;}
+    .progress-fill{height:100%; width:0%; background: linear-gradient(90deg,var(--accent3),var(--accent1)); transition:width .45s ease;}
+
+    .progress-meta{display:flex; justify-content:space-between; font-size:0.9rem; color:rgba(255,255,255,0.8); margin-top:6px;}
+
+    /* Floating GPT button */
+    .fab{
+      position:fixed; right:18px; bottom:18px; z-index:9999;
+      display:flex; align-items:center; gap:10px;
+    }
+    .fab .bubble{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#000; padding:12px 14px; border-radius:999px; font-weight:700; cursor:pointer; box-shadow:0 8px 30px rgba(0,0,0,0.5);}
+    .fab .hint{background:rgba(255,255,255,0.06); padding:8px 10px; border-radius:10px; font-size:0.9rem; color:#fff; display:none;}
+    @media(min-width:900px){ .fab .hint{display:block;} }
+
+    footer{padding:18px; text-align:center; color:rgba(255,255,255,0.75); font-size:0.9rem;}
+
+    /* small helpers */
+    .tiny{font-size:0.88rem; color:#cfcfcf;}
+    .creator{font-weight:700; color:#ffd88f;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>😈 SIH25012 — First-Prize Playbook</h1>
+    <p class="tiny">Layered reveal, step-by-step instructions and show-off lines — built to win.</p>
+  </header>
+
+  <main class="wrap">
+    <!-- Day 1 -->
+    <div class="card">
+      <h2>Day 1 — Setup & Strategy</h2>
+
+      <details class="day" open>
+        <summary>
+          <div class="day-title">
+            <div>Day 1 — Setup & Strategy</div>
+            <div class="day-badge">3 steps</div>
+          </div>
+        </summary>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d1s1" id="d1s1">
+                <label for="d1s1">Lock down team roles</label>
+              </div>
+              <button class="open-step-btn" data-target="d1s1-sub">Open</button>
+            </div>
+            <div class="substeps" id="d1s1-sub" hidden>
+              <button class="substep-btn" data-target="d1s1-ss1">Decide leader & roles</button>
+              <div class="substep-expl" id="d1s1-ss1">Quick action: name one leader, split tasks into coding/design/pitch/test. Keep roles clear.</div>
+
+              <button class="substep-btn" data-target="d1s1-ss2">Create repo</button>
+              <div class="substep-expl" id="d1s1-ss2">Create a GitHub repo, add README, create branches feature/main. Commit often with clear messages.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d1s2" id="d1s2">
+                <label for="d1s2">Research problem statement</label>
+              </div>
+              <button class="open-step-btn" data-target="d1s2-sub">Open</button>
+            </div>
+            <div class="substeps" id="d1s2-sub" hidden>
+              <button class="substep-btn" data-target="d1s2-ss1">Highlight keywords</button>
+              <div class="substep-expl" id="d1s2-ss1">Underline what the problem *really* asks; identify constraints and expected outputs.</div>
+
+              <button class="substep-btn" data-target="d1s2-ss2">Survey solutions</button>
+              <div class="substep-expl" id="d1s2-ss2">Search past winners/case studies to spot gaps. Your edge = exploit gap + simple UX.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d1s3" id="d1s3">
+                <label for="d1s3">Build rough wireframes</label>
+              </div>
+              <button class="open-step-btn" data-target="d1s3-sub">Open</button>
+            </div>
+            <div class="substeps" id="d1s3-sub" hidden>
+              <button class="substep-btn" data-target="d1s3-ss1">Sketch the flow</button>
+              <div class="substep-expl" id="d1s3-ss1">Paper or Figma: draw the minimum screens that show the core value instantly.</div>
+            </div>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="card">
+      <h2>Day 2 — Build & Break</h2>
+
+      <details class="day">
+        <summary>
+          <div class="day-title">
+            <div>Day 2 — Build & Break</div>
+            <div class="day-badge">3 steps</div>
+          </div>
+        </summary>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d2s1" id="d2s1">
+                <label for="d2s1">Code core features</label>
+              </div>
+              <button class="open-step-btn" data-target="d2s1-sub">Open</button>
+            </div>
+            <div class="substeps" id="d2s1-sub" hidden>
+              <button class="substep-btn" data-target="d2s1-ss1">MVP first</button>
+              <div class="substep-expl" id="d2s1-ss1">Implement the core value — the rest is polish. Use libraries to speed up.</div>
+              <button class="substep-btn" data-target="d2s1-ss2">Prepare fallback</button>
+              <div class="substep-expl" id="d2s1-ss2">Record a short backup demo video (30–60s) in case live demo fails.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d2s2" id="d2s2">
+                <label for="d2s2">Run first demo tests</label>
+              </div>
+              <button class="open-step-btn" data-target="d2s2-sub">Open</button>
+            </div>
+            <div class="substeps" id="d2s2-sub" hidden>
+              <button class="substep-btn" data-target="d2s2-ss1">Smoke test</button>
+              <div class="substep-expl" id="d2s2-ss1">Ensure the main flow completes end-to-end at least once with realistic data.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d2s3" id="d2s3">
+                <label for="d2s3">Mock pitch with teammates</label>
+              </div>
+              <button class="open-step-btn" data-target="d2s3-sub">Open</button>
+            </div>
+            <div class="substeps" id="d2s3-sub" hidden>
+              <button class="substep-btn" data-target="d2s3-ss1">Run timed rehearsal</button>
+              <div class="substep-expl" id="d2s3-ss1">Practice handovers, demo timing, and Q&A. One person plays 'tough judge'.</div>
+            </div>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+    <!-- Final Pitch -->
+    <div class="card">
+      <h2>Final Pitch — Showtime</h2>
+
+      <details class="day">
+        <summary>
+          <div class="day-title">
+            <div>Final Pitch — Showtime</div>
+            <div class="day-badge">3 steps</div>
+          </div>
+        </summary>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d3s1" id="d3s1">
+                <label for="d3s1">Polish slides with graphics</label>
+              </div>
+              <button class="open-step-btn" data-target="d3s1-sub">Open</button>
+            </div>
+            <div class="substeps" id="d3s1-sub" hidden>
+              <button class="substep-btn" data-target="d3s1-ss1">Make visuals pop</button>
+              <div class="substep-expl" id="d3s1-ss1">Less text, clear icons, 1 message per slide. Judges skim — make it obvious.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d3s2" id="d3s2">
+                <label for="d3s2">Prepare 2-min live demo</label>
+              </div>
+              <button class="open-step-btn" data-target="d3s2-sub">Open</button>
+            </div>
+            <div class="substeps" id="d3s2-sub" hidden>
+              <button class="substep-btn" data-target="d3s2-ss1">Script the demo</button>
+              <div class="substep-expl" id="d3s2-ss1">Short script: start, few clicks to show core value, finish. Practice until smooth.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-header">
+              <div class="step-left">
+                <input type="checkbox" class="step-checkbox" data-step="d3s3" id="d3s3">
+                <label for="d3s3">End with a bold vision</label>
+              </div>
+              <button class="open-step-btn" data-target="d3s3-sub">Open</button>
+            </div>
+            <div class="substeps" id="d3s3-sub" hidden>
+              <button class="substep-btn" data-target="d3s3-ss1">Craft one-liner</button>
+              <div class="substep-expl" id="d3s3-ss1">Finish with a line that projects scale & impact. Example: “We can reach 1M users in 2 years.”</div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Progress / GPT quick -->
+    <div class="card">
+      <h2>Progress & Quick Help</h2>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+        <div class="progress-meta"><span id="progressText">0% complete</span><span class="tiny">Steps checked</span></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Floating GPT-5 button -->
+  <div class="fab" title="Ask GPT-5 anytime">
+    <div class="hint">Ask GPT-5 for a doubt</div>
+    <button class="bubble" id="gptBtn">Ask GPT-5</button>
+  </div>
+
+  <footer>
+    <div>SIH25012 Hackathon — Own the stage 😈</div>
+    <div class="creator">Created by ROHIT KHONDE</div>
+    <div class="tiny">Hosted idea: GitHub Pages / Netlify (public link)</div>
+  </footer>
+
+  <script>
+    // Toggle step substeps
+    document.querySelectorAll('.open-step-btn').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const id = btn.getAttribute('data-target');
+        const el = document.getElementById(id);
+        if(!el) return;
+        const isHidden = el.hasAttribute('hidden');
+        if(isHidden) el.removeAttribute('hidden'); else el.setAttribute('hidden','');
+        btn.textContent = isHidden ? 'Close' : 'Open';
+      });
+    });
+
+    // Toggle individual substep explanation
+    document.querySelectorAll('.substep-btn').forEach(sbtn=>{
+      sbtn.addEventListener('click', e=>{
+        const id = sbtn.getAttribute('data-target');
+        const el = document.getElementById(id);
+        if(!el) return;
+        if(el.style.display === 'block') el.style.display = 'none';
+        else el.style.display = 'block';
+        // smooth small scroll to show explanation on smaller screens
+        if(el.style.display === 'block') el.scrollIntoView({behavior:'smooth', block:'center'});
+      });
+    });
+
+    // Progress calculation
+    const stepCheckboxes = Array.from(document.querySelectorAll('.step-checkbox'));
+    const fill = document.getElementById('progressFill');
+    const text = document.getElementById('progressText');
+    function updateProgress(){
+      const total = stepCheckboxes.length;
+      const done = stepCheckboxes.filter(cb=>cb.checked).length;
+      const pct = Math.round((done/total)*100);
+      fill.style.width = pct + '%';
+      text.textContent = pct + '% complete';
+    }
+    stepCheckboxes.forEach(cb=>cb.addEventListener('change', updateProgress));
+    updateProgress();
+
+    // Floating GPT button opens ChatGPT in new tab (gpt-5 hint)
+    document.getElementById('gptBtn').addEventListener('click', ()=>{
+      // best-effort hint to open GPT-5; user may need to pick model in UI
+      window.open('https://chat.openai.com/?model=gpt-5', '_blank');
+    });
+
+    // Accessibility: allow keyboard toggles for open-step-btns
+    document.querySelectorAll('.open-step-btn').forEach(b=>{
+      b.addEventListener('keyup', e=>{ if(e.key==='Enter' || e.key===' ') b.click(); });
+    });
+    document.querySelectorAll('.substep-btn').forEach(b=>{
+      b.addEventListener('keyup', e=>{ if(e.key==='Enter' || e.key===' ') b.click(); });
+    });
+  </script>
+</body>
+</html>

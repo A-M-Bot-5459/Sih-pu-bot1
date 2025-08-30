@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIH25012 — First-Prize Playbook</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top left, #1e1e2f, #0d0d14);
+      color: white;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff0080, #7928ca, #2af598);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff0080; }
+      to { text-shadow: 0 0 25px #2af598; }
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .task {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .task:hover {
+      transform: scale(1.02);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #1e1e2f;
+      padding: 2rem;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 0 30px #ff0080;
+      animation: pop 0.4s ease;
+    }
+    @keyframes pop {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal h2 {
+      margin-top: 0;
+      color: #2af598;
+    }
+    .close {
+      float: right;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ff4f81;
+    }
+    .secret-tab {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #111;
+      text-align: center;
+      padding: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #2af598;
+      box-shadow: 0 -2px 15px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>😈 SIH25012 — First-Prize Playbook</header>
+  <div class="container">
+    <div class="task" onclick="openModal('problem')">📌 Understand Problem Statement</div>
+    <div class="task" onclick="openModal('uiux')">🎨 Design UI/UX</div>
+    <div class="task" onclick="openModal('tech')">⚙️ Build Technical Solution</div>
+    <div class="task" onclick="openModal('pitch')">🎤 Final Pitch & Show-off</div>
+  </div>
+
+  <!-- Modals -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
+    </div>
+  </div>
+
+  <!-- Secret Weapon -->
+  <div class="secret-tab" onclick="openModal('secret')">🕵️ Secret Weapon</div>
+
+  <script>
+    const content = {
+      problem: {
+        title: "Understand Problem Statement",
+        body: "🔍 Steps to Dominate:<br>1. Break down the problem line by line.<br>2. Research 2–3 existing solutions.<br>3. Highlight their weakness — then plan your killer twist.<br><br>😈 Flex Line: 'We didn’t just read the problem, we rewrote the battlefield.'"
+      },
+      uiux: {
+        title: "Design UI/UX",
+        body: "🎨 Steps to Impress:<br>1. Sketch simple wireframes.<br>2. Use bold colors & animations for wow effect.<br>3. Keep flows intuitive (judges = lazy users).<br><br>😏 Flex Line: 'Our design isn’t pretty — it’s hypnotic.'"
+      },
+      tech: {
+        title: "Build Technical Solution",
+        body: "⚙️ Steps to Slay:<br>1. Pick stable, fast-to-code tech stack.<br>2. Modular approach (divide among team).<br>3. Always prepare fallback demo (video/mock).<br><br>🔥 Flex Line: 'We didn’t code it, we engineered chaos into order.'"
+      },
+      pitch: {
+        title: "Final Pitch & Show-off",
+        body: "🎤 Steps to Conquer:<br>1. Start with a dramatic one-liner.<br>2. Demo live (with backup).<br>3. End with impact stats or future vision.<br><br>💀 Flex Line: 'This isn’t just a solution… it’s the future, and we own it.'"
+      },
+      secret: {
+        title: "Secret Weapon Vault",
+        body: "🕵️ Here’s your hidden stash:<br>- Links to reference material.<br>- Cheat notes for Q&A.<br>- Killer one-liners like: 'We don’t follow trends, we set them.'<br><br>💡 Use this tab to secretly boost mid-pitch."
+      }
+    };
+
+    function openModal(key) {
+      document.getElementById('modal-title').innerHTML = content[key].title;
+      document.getElementById('modal-body').innerHTML = content[key].body;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
